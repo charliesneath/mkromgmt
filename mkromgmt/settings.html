@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link type="text/css" rel="stylesheet" href="/files/main.css" />
+    <link type="text/css" rel="stylesheet" href="/files/settings.css" />
+    <link type="text/css" rel="stylesheet" href="/files/jquery.css" />
+    <script type="text/javascript" src="/files/jquery.js"></script>
+    <script type="text/javascript" src="/files/jquery-ui.js"></script>
+    <script type="text/javascript" src="/files/settings.js"></script>
+    <title>settings</title>
+  </head>
+  
+  <body>
+    <div id="wrapper">
+    <div id="menu">
+      <a href="/">&#9756; MKROMGMT</a>
+    </div>      
+      {% for category in categories %}
+        <div class="category" id="category-{{category.id}}">
+          <p class="category_name">{{category.name|upper}}</p>
+          <div class="tasks">
+            {% for task in category.tasks %}  
+              <p class="task" id="task-{{category.id}}-{{task.id}}"><span class="task_name">{{task.name}}</span><span class="delete_task_links"><a class="delete_task">&nbsp;&times;</a>&nbsp;<a class="confirm_delete_task">really?</a></p>
+            {% endfor %}
+          </div>
+          <div class="new_task"><input type="text" value="+ new" />&nbsp;<a class="submit_new_task">ok</a></div>
+        </div>
+      {% endfor %}
+      <div class="category" id="new_category">
+        <p class="category_name">NEW CATEGORY +</p>
+        <div class="new_task"><input type="text" value="+ new" />&nbsp;<a class="submit_new_task">ok</a></div>
+      </div>
+    </div>
+  </body>
+</html>

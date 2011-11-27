@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript" src="/files/jquery.js"></script>
+    <script type="text/javascript" src="/files/jquery-ui.js"></script>
+    <script type="text/javascript" src="/files/scripts.js"></script>
+    <script type="text/javascript" src="/files/jquery.autoresize.js"></script>
+    <link type="text/css" rel="stylesheet" href="/files/main.css" />
+    <link type="text/css" rel="stylesheet" href="/files/jquery.css" />
+    <title>mkromgmt</title>
+  </head>
+  
+  <body>
+    <div id="wrapper">
+      <div id="status_indicator">saved!</div>
+      <div id="menu">
+        <span class="app_name">MKROMGMT</span>&nbsp;/&nbsp;<a href="/settings">SETTINGS</a>&nbsp;/&nbsp;<a href="mailto:thatmkromgmtthing@gmail.com?subject=your app sucks and here's why">COMPLAIN</a>&nbsp;
+        /&nbsp;<a href="/logout">LOGOUT</a>
+      </div>
+      <table id="days">
+        <tbody>
+          <tr id="category_headers">
+            <td class="spacer"></td>
+            <td class="spacer"></td>
+            {% for category in categories %}
+              <td colspan="{{category.num_tasks}}" id="category-{{ category.id }}" 
+                class="category_header category_{{category.id}}">{{category.name}}</td>
+            {% endfor %}
+          </tr>
+          <tr id="task_headers">
+            <td class="spacer"></td>
+            <td class="spacer"></td>
+            {% for task in tasks %}
+              <td id="task-{{task.id}}" class="task_header">{{task.name}}</td>
+            {% endfor %}
+          </tr>
+          {% for date in dates %}
+            <tr class="date" id="date-{{forloop.counter}}">
+              <td class="journal_toggle">&#9660;</td>
+              <td class="date_label">{{ date }}</td>
+              {% for task in tasks %}
+                <td id="{{forloop.parentloop.counter}}-{{task.id}}" 
+                  class="task category_{{task.category_id}}"></td> 
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div id="journal">
+        <textarea>(click on a date above to save notes about that day)</textarea>
+      </div>
+    </div>
+  </body>
+</html>

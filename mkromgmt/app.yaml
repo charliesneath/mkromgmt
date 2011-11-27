@@ -1,0 +1,17 @@
+application: mkromgmt
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /files
+  static_dir: files
+
+- url: .*
+  script: main.py
+  login: required
+  
+- url: /favicon\.ico
+  static_files: files/favicon.ico
+  upload: static/images/favicon\.ico
+  
